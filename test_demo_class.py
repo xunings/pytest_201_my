@@ -17,3 +17,16 @@ class TestAdd:
         with pytest.raises(demo.MysteryError):
             assert demo.add(99, 1) == 100
 
+
+def test_fixture(my_fixture):
+    assert my_fixture == 42
+
+def test_capsys(capsys):
+    print('hello')
+    print('bye')
+    out, err = capsys.readouterr()
+    assert 'bye\n' in out
+
+
+
+
