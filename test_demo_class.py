@@ -41,6 +41,10 @@ def test_tmpdir(tmpdir):
     assert result["hello"] == "world"
 
 def test_fixture_with_fixtures(capsys, captured_print):
+    # every fixture included in a function is called before the test function code is called.
+    # capsys is included by captured_print, thus is called before captured_print.
+    # i.e., the print("hello") in capture_print is caught by capsys before the following line.
+    # Note: whenever capsys is included, the sys.stdout and sys.stderr are captured by capsys.
     print("more")
     out, err = capsys.readouterr()
-    assert out == "hi\nmore\n"
+    assert out == "hello\nmore\n"
