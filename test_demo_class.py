@@ -40,3 +40,7 @@ def test_tmpdir(tmpdir):
     print(str((some_file)))
     assert result["hello"] == "world"
 
+def test_fixture_with_fixtures(capsys, captured_print):
+    print("more")
+    out, err = capsys.readouterr()
+    assert out == "hi\nmore\n"
