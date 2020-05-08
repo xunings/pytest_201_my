@@ -27,6 +27,10 @@ def test_capsys(capsys):
     out, err = capsys.readouterr()
     assert 'bye\n' in out
 
-
+def test_monkeypatch(monkeypatch):
+    def fake_add(a, b):
+        return 42
+    monkeypatch.setattr(demo, "add", fake_add)
+    assert demo.add(2, 3) == 42
 
 
