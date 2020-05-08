@@ -33,4 +33,10 @@ def test_monkeypatch(monkeypatch):
     monkeypatch.setattr(demo, "add", fake_add)
     assert demo.add(2, 3) == 42
 
+def test_tmpdir(tmpdir):
+    some_file = tmpdir.join('something.txt')
+    some_file.write('{"hello": "world"}')
+    result = demo.read_json(str(some_file))
+    print(str((some_file)))
+    assert result["hello"] == "world"
 
